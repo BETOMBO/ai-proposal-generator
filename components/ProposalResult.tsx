@@ -43,6 +43,13 @@ export default function ProposalResult({ proposal, isLoading }: ProposalResultPr
     );
   }
 
+  // Split the proposal into paragraphs and format them
+  const formattedProposal = proposal.split('\n\n').map((paragraph, index) => (
+    <p key={index} className="mb-4 last:mb-0">
+      {paragraph}
+    </p>
+  ));
+
   return (
     <div className="bg-white rounded-lg shadow-sm h-full p-6">
       <div className="flex items-center justify-between mb-6">
@@ -58,8 +65,10 @@ export default function ProposalResult({ proposal, isLoading }: ProposalResultPr
         </button>
       </div>
       <div className="prose max-w-none">
-        <div className="bg-gray-50 rounded-lg p-4">
-          <pre className="whitespace-pre-wrap font-sans text-gray-700 text-sm leading-relaxed">{proposal}</pre>
+        <div className="bg-gray-50 rounded-lg p-6">
+          <div className="text-gray-700 text-base leading-relaxed space-y-4">
+            {formattedProposal}
+          </div>
         </div>
       </div>
     </div>
